@@ -20,6 +20,10 @@ static StaticTask_t app_task_tcb;
 
 void run_app_task(void *pvParameters)
 {
+    printf("Initializing sensor...\n");
+    bool result = initialize_sensor();
+    printf("Initializing sensor %s!\n", result ? "succeeded" : "failed");
+
     netif_set_hostname(netif_default, "testmyesp");
     sdk_wifi_station_connect();
     do
