@@ -24,6 +24,12 @@ void run_app_task(void *pvParameters)
     bool result = initialize_sensor();
     printf("Initializing sensor %s!\n", result ? "succeeded" : "failed");
 
+    struct measurements_t measurements;
+    if(!get_measurements(&measurements))
+    {
+        printf("Failed to get measurements\n");
+    }
+
     netif_set_hostname(netif_default, "testmyesp");
     sdk_wifi_station_connect();
     do

@@ -3,17 +3,21 @@
 
 #include "stdbool.h"
 
-struct temp_t
+struct meas_t
 {
-    unsigned short integer_part;
-    unsigned int fractional_part;
+    int8_t  integer_part;
+    uint8_t fractional_part; //exactly 2 decimal places
+};
+
+struct measurements_t
+{
+    struct meas_t temperature;
+    struct meas_t humidity;
 };
 
 bool initialize_sensor();
 
-struct temp_t get_temperature_reading();
-
-unsigned int get_humidity_reading();
+bool get_measurements(struct measurements_t* result);
 
 void set_relay_state(bool closed);
 
